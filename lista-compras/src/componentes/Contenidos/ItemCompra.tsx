@@ -1,5 +1,5 @@
 import { Pressable, Text, StyleSheet } from "react-native";
-import { Producto } from "../Controladores/ControladorListaCompra";
+import { Producto } from "../../tipos/tipo";
 
 type Props = {
   producto: Producto;
@@ -40,15 +40,21 @@ const styles = StyleSheet.create({
   fila: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 12,
+    paddingVertical: 12,   
+    paddingHorizontal: 8,
+    alignItems: "center",  
   },
   texto: { fontSize: 16 },
   completado: { textDecorationLine: "line-through", color: "#999" },
+
   indicador: {
     minWidth: 28,
+    height: 28,              
+    borderRadius: 14,        
     textAlign: "center",
-    fontWeight: "bold",
+    textAlignVertical: "center", 
+    fontWeight: "700",      
   },
-  indicadorPendiente: { backgroundColor: "#eee" },
+  indicadorPendiente: { backgroundColor: "#eee", color: "#666" }, 
   indicadorListo: { backgroundColor: "#2ecc71", color: "#fff" },
 });

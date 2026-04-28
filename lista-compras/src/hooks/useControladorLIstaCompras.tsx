@@ -1,10 +1,5 @@
 import { useState } from "react";
-
-export type Producto = {
-  id: string;
-  nombre: string;
-  completado: boolean;
-};
+import {Producto} from "../tipos/tipo";
 
 export function useControladorListaCompras() {
   const [productos, setProductos] = useState<Producto[]>([]);
