@@ -1,11 +1,10 @@
 import { useState } from "react";
-import {Producto} from "../tipos/tipo";
+import { Producto } from "../tipos/tipo";
 
 export function useControladorListaCompras() {
   const [productos, setProductos] = useState<Producto[]>([]);
-  const [texto, setTexto] = useState("");
 
-  const agregarProducto = () => {
+  const agregarProducto = (texto: string) => {
     const textoLimpio = texto.trim();
     if (!textoLimpio) return;
 
@@ -17,15 +16,11 @@ export function useControladorListaCompras() {
         completado: false,
       },
     ]);
-
-    setTexto("");
   };
 
   const alternarProducto = (id: string) => {
     setProductos((prev) =>
-      prev.map((p) =>
-        p.id === id ? { ...p, completado: !p.completado } : p
-      )
+      prev.map((p) => (p.id === id ? { ...p, completado: !p.completado } : p)),
     );
   };
 
@@ -35,10 +30,9 @@ export function useControladorListaCompras() {
 
   return {
     productos,
-    texto,
-    setTexto,
     agregarProducto,
     alternarProducto,
     eliminarProducto,
   };
 }
+

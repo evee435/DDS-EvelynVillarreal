@@ -1,16 +1,15 @@
+import { useState } from "react";
 import { View, TextInput, Pressable, Text, StyleSheet } from "react-native";
 
 type Props = {
-  texto: string;
-  alCambiarTexto: (t: string) => void;
-  alAgregar: () => void;
+  alAgregar: (texto: string) => void;
 };
 
-export default function InputProducto({
-  texto,
-  alCambiarTexto,
+export default function FormularioParaAgregarNuevosProductos({
   alAgregar,
 }: Props) {
+  const [texto, alCambiarTexto] = useState<string>("");
+
   return (
     <View style={styles.fila}>
       <TextInput
@@ -18,10 +17,10 @@ export default function InputProducto({
         onChangeText={alCambiarTexto}
         placeholder="Agregar producto"
         style={styles.input}
-        onSubmitEditing={alAgregar}
+        onSubmitEditing={() => alAgregar(texto)}
       />
 
-      <Pressable onPress={alAgregar} style={styles.boton}>
+      <Pressable onPress={() => alAgregar(texto)} style={styles.boton}>
         <Text style={styles.textoBoton}>Agregar</Text>
       </Pressable>
     </View>
@@ -32,17 +31,18 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     borderWidth: 1,
-    borderColor: "#ddd",    
-    borderRadius: 8,         
-    paddingHorizontal: 12,   
-    height: 44,             
+    borderColor: "#ddd",
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    height: 44,
   },
   boton: {
     backgroundColor: "#1e90ff",
-    paddingHorizontal: 14,   
-    borderRadius: 8,        
-    alignItems: "center",    
-    justifyContent: "center" 
+    paddingHorizontal: 14,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  textoBoton: { color: "#fff", fontWeight: "600" }, 
+  textoBoton: { color: "#fff", fontWeight: "600" },
 });
+
